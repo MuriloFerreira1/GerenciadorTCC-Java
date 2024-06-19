@@ -2,12 +2,17 @@ package com.MFF.OrganizadorTCC.Professor;
 
 import java.util.List;
 
+import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Projeto.Projeto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,8 +26,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class Professor {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "RM")
 	private long RM;
 	private String nome;
 	private String curso;

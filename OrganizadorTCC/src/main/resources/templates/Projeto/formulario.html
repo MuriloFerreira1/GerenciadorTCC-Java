@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Cadastro projeto</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+    <div class="box">
+        <h1>Cadastro projeto</h1>
+        <form method="post" action="/projeto">
+			<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
+			<input type="hidden" name="id" th:value="${projeto?.id}">
+			
+			<div>
+	            <label for="descricao"> Descrição: </label>
+	            <input type="text" id="descricao" name="descricao" th:value="${projeto?.descricao}">
+	        </div>	 
+	           
+	        <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+    </div>
+</body>
+</html>

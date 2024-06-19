@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <title>Lista de Alunos </title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1> Lista de Alunos</h1>
+    <a href="/aluno/formulario">Novo</a>
+    <table>
+        <thead>
+            <tr>
+            	<th>RM</th>
+                <th>Nome</th>
+                <th>Turma</th>
+                <th>Curso</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="aluno : ${lista}">
+            	<td th:text="${aluno.RM}"></td>
+				<td th:text="${aluno.nome}"></td>
+				<td th:text="${aluno.turma}"></td>
+                <td th:text="${aluno.curso}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

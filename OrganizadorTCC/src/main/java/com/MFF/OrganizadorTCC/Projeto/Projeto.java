@@ -3,6 +3,7 @@ package com.MFF.OrganizadorTCC.Projeto;
 import java.util.List;
 
 import com.MFF.OrganizadorTCC.Aluno.Aluno;
+import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Professor.Professor;
 
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Projeto {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id")
+	@Column(name = "id")
 	private long id;
 	
 	private String nome;
@@ -37,6 +38,9 @@ public class Projeto {
 	
 	@OneToOne
 	private Professor professor;
+	
+	@OneToOne
+	private Area area;
 	
 	public Projeto(DadosCadastroProjeto proj) {
 		this.nome = proj.nome();

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Cadastro Aluno</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+    <div class="box">
+        <h1>Cadastro Aluno</h1>
+        <form method="post" action="/aluno">
+			<input type="hidden" name="_method" value="put" th:if="${aluno!= null}">
+			<input type="hidden" name="RM" th:value="${aluno?.RM}">
+			
+			<div th:if="${aluno==null}">
+				<label for="RM"> RM: </label>
+	            <input type="text" id="RM" name="RM" th:value="${aluno?.RM}">
+			</div>
+			<div>
+	            <label for="nome"> Nome: </label>
+	            <input type="text" id="nome" name="nome" th:value="${aluno?.nome}">
+	        </div>
+	        <div>
+	            <label for="turma"> Turma: </label>
+	            <input type="text" id="turma" name="turma" th:value="${aluno?.turma}">
+	        </div>
+	        <div>
+	            <label for="curso"> Curso: </label>
+	            <input type="text" id="curso" name="curso" th:value="${aluno?.curso}">
+	        </div>	 
+	           
+	        <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+    </div>
+</body>
+</html>
