@@ -42,20 +42,23 @@ public class Professor {
 	@ManyToMany
 	@JoinTable(
 			name = "area_professor",
-			joinColumns= {
-				@JoinColumn(name = "Area_id")},
-			inverseJoinColumns= {
-				@JoinColumn(name = "Professor_id")}
+			joinColumns= 
+				@JoinColumn(name = "Area_id"),
+			inverseJoinColumns= 
+				@JoinColumn(name = "Professor_id")
 			)
 	private List<Area> areas;
 	
 	public Professor(DadosCadastroProfessor dados) {
+		this.RM = dados.RM();
 		this.nome = dados.nome();
 		this.curso = dados.curso();
 	}
 	
 	public void atualizaProfessor(DadosAtualizaProfessor dados) {
-		
+		this.id = dados.id();
+		this.nome = dados.nome();
+		this.curso = dados.curso();
 	}
 	
 }

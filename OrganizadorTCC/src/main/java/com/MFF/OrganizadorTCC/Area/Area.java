@@ -10,8 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,14 +31,7 @@ public class Area {
 	private String nome;
 	private String descricao;
 	
-	@ManyToMany
-	@JoinTable(
-			name = "area_professor",
-			joinColumns= {
-				@JoinColumn(name = "Area_id")},
-			inverseJoinColumns= {
-				@JoinColumn(name = "Professor_id")}
-			)
+	@ManyToMany(mappedBy = "areas") 
 	private List<Professor> professores;
 	
 	

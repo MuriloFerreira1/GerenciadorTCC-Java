@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}"
+>
+<head>
+    <title>Cadastro professor</title>
+</head>
+<body>
+	<div layout:fragment="conteudo">
+    <div class="box">
+        <h1>Cadastro professor</h1>
+        <form method="post" action="/professor">
+			<input type="hidden" name="_method" value="put" th:if="${professor!= null}">
+			<input type="hidden" name="id" th:value="${professor?.id}">
+			
+			<div>
+				<label for="RM"> RM: </label>
+	            <input type="text" id="RM" name="RM" th:value="${professor?.RM}">
+			</div>
+			<div>
+	            <label for="nome"> Nome: </label>
+	            <input type="text" id="nome" name="nome" th:value="${professor?.nome}">
+	        </div>
+	        <div>
+	            <label for="curso"> Curso: </label>
+	            <input type="text" id="curso" name="curso" th:value="${professor?.curso}">
+	        </div>	 
+	        <div>
+	        	<label for="areas">Areas</label>
+	        	<select id="areas" name="areas">
+					<option></option>
+					<option th:each="area: ${areas}" 
+						th:value="${area.id}" 
+						th:text="${area.nome}"
+						th:type="checkbox"
+						th:attr="onclick='${professor?.areas.add(area)}'">
+						Wireframe
+					</option>
+				</select>
+				<textarea readonly 
+					th:each="area: ${professor?.areas}"
+					th:text="${area.nome}"></textarea>
+	        </div>
+	        <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+    </div>
+</body>
+</html>

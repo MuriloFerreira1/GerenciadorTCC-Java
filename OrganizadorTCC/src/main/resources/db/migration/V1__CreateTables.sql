@@ -24,12 +24,6 @@ create table if not exists alunos(
 	primary key(id)
 );
 
-create table if not exists area_professor(
-	professor_id bigint not null,
-	area_id bigint not null,
-	primary key(professor_id,area_id)
-);
-
 create table if not exists projetos(
 	id bigint not null auto_increment,
 	professor_id bigint,
@@ -42,14 +36,6 @@ create table if not exists projetos(
 alter table Alunos
 	add constraint FK_Aluno_projeto 
 	foreign key(projeto_id) references projetos(id);
-	
-alter table area_professor
-	add constraint FK_Professor 
-	foreign key(professor_id) references professores(id);
-	
-alter table area_professor
-	add constraint FK_Area 
-	foreign key(area_id) references areas(id);
 
 alter table projetos
 	add constraint FK_Projeto_Professor 
