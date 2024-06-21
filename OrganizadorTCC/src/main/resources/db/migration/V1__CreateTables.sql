@@ -6,31 +6,33 @@ create table if not exists areas(
 );
 
 create table if not exists professores(
+	id bigint not null auto_increment,
 	RM bigint not null,
 	nome varchar(40),
 	curso varchar(40),
 	organizador smallint(1),
-	primary key(RM)
+	primary key(id)
 );
 
 create table if not exists alunos(
+	id bigint not null auto_increment,
 	RM bigint not null,
 	projeto_id bigint,
 	nome varchar(40),
 	curso varchar(40),
 	turma varchar(10),
-	primary key(RM)
+	primary key(id)
 );
 
 create table if not exists area_professor(
-	RM_professor bigint not null,
+	professor_id bigint not null,
 	area_id bigint not null,
-	primary key(RM_professor,area_id)
+	primary key(professor_id,area_id)
 );
 
 create table if not exists projetos(
 	id bigint not null auto_increment,
-	RM_professor bigint,
+	professor_id bigint,
 	area_id bigint,
 	nome varchar(127),
 	descricao varchar(255),
@@ -43,7 +45,7 @@ alter table Alunos
 	
 alter table area_professor
 	add constraint FK_Professor 
-	foreign key(RM_Professor) references professores(RM);
+	foreign key(professor_id) references professores(id);
 	
 alter table area_professor
 	add constraint FK_Area 
@@ -51,7 +53,7 @@ alter table area_professor
 
 alter table projetos
 	add constraint FK_Projeto_Professor 
-	foreign key (RM_professor) references professores(RM);
+	foreign key (professor_id) references professores(id);
 	
 alter table projetos 
 	add constraint FK_Projeto_Area

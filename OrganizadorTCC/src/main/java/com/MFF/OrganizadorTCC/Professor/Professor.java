@@ -29,7 +29,8 @@ import lombok.Setter;
 @Embeddable
 public class Professor {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "RM")
+	@Column(name = "id")
+	private long id;
 	private long RM;
 	private String nome;
 	private String curso;

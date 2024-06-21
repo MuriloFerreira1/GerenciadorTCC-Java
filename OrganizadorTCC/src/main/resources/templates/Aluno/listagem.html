@@ -16,6 +16,7 @@
                 <th>Nome</th>
                 <th>Turma</th>
                 <th>Curso</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,15 @@
 				<td th:text="${aluno.nome}"></td>
 				<td th:text="${aluno.turma}"></td>
                 <td th:text="${aluno.curso}"></td>
+                <td>
+					<a th:href="@{/aluno/formulario?id={id}(id=${aluno.id})}"><button>Editar</button></a> 
+					
+					<form action="/aluno" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="id" th:value="${aluno.id}">
+						<input type="submit" value="Excluir">
+					</form>
+				</td>
             </tr>
         </tbody>
     </table>

@@ -23,7 +23,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Aluno {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "RM")
+	@Column(name = "id")
+	private long id;
 	private long RM;
 	private String nome;
 	private String turma;
@@ -34,6 +35,7 @@ public class Aluno {
 	private Projeto projeto;
 	
 	public Aluno(DadosCadastroAluno dados) {
+		//System.out.println(dados.RM()+"|"+dados.nome()+"|"+dados.curso()+"|"+dados.turma());
 		this.RM = dados.RM();
 		this.nome = dados.nome();
 		this.turma = dados.turma();

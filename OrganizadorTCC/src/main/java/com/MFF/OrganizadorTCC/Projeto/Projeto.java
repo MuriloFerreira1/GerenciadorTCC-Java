@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -37,9 +38,11 @@ public class Projeto {
 	private List<Aluno> alunos;
 	
 	@OneToOne
+	@JoinColumn(name = "professor_id")
 	private Professor professor;
 	
 	@OneToOne
+	@JoinColumn(name = "area_id")
 	private Area area;
 	
 	public Projeto(DadosCadastroProjeto proj) {
