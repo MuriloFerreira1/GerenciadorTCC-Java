@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <title>Lista de Areas </title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1> Lista de Areas</h1>
+    <a href="/area/formulario">Novo</a>
+    <table>
+        <thead>
+            <tr>
+            	<th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="area : ${lista}">
+            	<td th:text="${area.nome}"></td>
+                <td th:text="${area.descricao}"></td>
+                <td>
+					<a th:href="@{/area/formulario?id={id}(id=${area.id})}"><button>Editar</button></a> 
+					
+					<form action="/area" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="id" th:value="${area.id}">
+						<input type="submit" value="Excluir">
+					</form>
+				</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

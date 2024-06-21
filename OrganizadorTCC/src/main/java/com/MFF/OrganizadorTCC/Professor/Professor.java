@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -37,6 +38,16 @@ public class Professor {
 	
 	@OneToMany
 	private List<Projeto> projetos;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "area_professor",
+			joinColumns= {
+				@JoinColumn(name = "Area_id")},
+			inverseJoinColumns= {
+				@JoinColumn(name = "Professor_id")}
+			)
+	private List<Area> areas;
 	
 	public Professor(DadosCadastroProfessor dados) {
 		this.nome = dados.nome();

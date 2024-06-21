@@ -39,7 +39,7 @@ public class Area {
 			joinColumns= {
 				@JoinColumn(name = "Area_id")},
 			inverseJoinColumns= {
-				@JoinColumn(name = "RM_Professor")}
+				@JoinColumn(name = "Professor_id")}
 			)
 	private List<Professor> professores;
 	
