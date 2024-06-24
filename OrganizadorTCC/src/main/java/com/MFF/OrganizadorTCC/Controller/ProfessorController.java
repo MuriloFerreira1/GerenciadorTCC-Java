@@ -70,7 +70,13 @@ public class ProfessorController {
 	@PutMapping
 	@Transactional
 	public String atualiza(DadosAtualizaProfessor dados) {
+		List<Long> id= new ArrayList<Long>();
+		for(Area area: dados.areas()) { id.add(area.getId()); }
+		List<Area> areas = id.stream()
+                .map(areaRepo::getReferenceById)
+                .collect(Collectors.toList());
 		var professor = repository.getReferenceById(dados.id());
+		professor.setAreas(areas);
 		professor.atualizaProfessor(dados);
 		return "redirect:professor";
 	}

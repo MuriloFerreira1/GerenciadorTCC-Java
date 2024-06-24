@@ -3,6 +3,7 @@ package com.MFF.OrganizadorTCC.Area;
 import java.util.List;
 
 import com.MFF.OrganizadorTCC.Professor.Professor;
+import com.MFF.OrganizadorTCC.Projeto.Projeto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +35,9 @@ public class Area {
 	
 	@ManyToMany(mappedBy = "areas") 
 	private List<Professor> professores;
+	
+	@OneToMany
+	private List<Projeto> projetos;
 	
 	
 	public Area (DadosCadastroArea dados) {

@@ -15,24 +15,29 @@
             	<th>RM</th>
                 <th>Nome</th>
                 <th>Curso</th>
+                <th>Areas</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="professor : ${lista}">
-            	<td th:text="${professor.RM}"></td>
-				<td th:text="${professor.nome}"></td>
-                <td th:text="${professor.curso}"></td>
-                <td>
-					<a th:href="@{/professor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
-					
-					<form action="/professor" method="post">
-						<input type="hidden" name="_method" value="delete">
-						<input type="hidden" name="id" th:value="${professor.id}">
-						<input type="submit" value="Excluir">
-					</form>
-				</td>
-            </tr>
+	            <tr th:each="professor : ${lista}">
+	            	<td th:text="${professor.RM}"></td>
+					<td th:text="${professor.nome}"></td>
+	                <td th:text="${professor.curso}"></td>
+	                <td>
+	                	<p th:each="area:${professor.areas}" th:text="${area.nome}"></p>
+	                </td>
+	                <td>
+						<a th:href="@{/professor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
+						
+						<form action="/professor" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<input type="hidden" name="id" th:value="${professor.id}">
+							<input type="submit" value="Excluir">
+						</form>
+					</td> 
+	            </tr>
+	        
         </tbody>
     </table>
 </div>

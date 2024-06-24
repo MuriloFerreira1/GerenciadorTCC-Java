@@ -1,5 +1,8 @@
 package com.MFF.OrganizadorTCC.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,8 @@ import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Area.AreaRepository;
 import com.MFF.OrganizadorTCC.Area.DadosAtualizaArea;
 import com.MFF.OrganizadorTCC.Area.DadosCadastroArea;
+import com.MFF.OrganizadorTCC.Professor.Professor;
+import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -21,6 +26,9 @@ import jakarta.transaction.Transactional;
 public class AreaController {
 	@Autowired
 	private AreaRepository repository;
+	
+	@Autowired
+	private ProfessorRepository profRepo;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
@@ -55,6 +63,16 @@ public class AreaController {
 	@DeleteMapping
 	@Transactional
 	public String deletar(Long id) {
+		List<Professor> professores = profRepo.findAll();
+		for(Professor prof: professores) {
+			List<Area> areas = new ArrayList<Area>();
+			for(Area area : prof.getAreas()) {
+				if(id!=area.getId()) {
+					areas.add(area);
+				}
+			}
+			prof.setAreas(areas);
+		}
 		repository.deleteById(id);
 		return "redirect:area";
 	}

@@ -32,15 +32,10 @@
 					<option></option>
 					<option th:each="area: ${areas}" 
 						th:value="${area.id}" 
-						th:text="${area.nome}"
-						th:type="checkbox"
-						th:attr="onclick=''">
+						th:text="${area.nome}">
 						Wireframe
 					</option>
 				</select>
-				<textarea readonly 
-					th:each="area: ${professor?.areas}"
-					th:text="${area.nome}"></textarea>
 	        </div>
 	        <input type="submit" value="Cadastrar">
         </form>
