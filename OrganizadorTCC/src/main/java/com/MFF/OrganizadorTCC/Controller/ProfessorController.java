@@ -55,9 +55,7 @@ public class ProfessorController {
 	@Transactional
 	public String cadastra(DadosCadastroProfessor dados) {
 		List<Long> id= new ArrayList<Long>();
-		for(Area area: dados.areas()) {
-			System.out.println(area.getId()+"|"+area.getNome());
-		}
+		for(Area area: dados.areas()) { id.add(area.getId()); }
 		List<Area> areas = id.stream()
                 .map(areaRepo::getReferenceById)
                 .collect(Collectors.toList());
