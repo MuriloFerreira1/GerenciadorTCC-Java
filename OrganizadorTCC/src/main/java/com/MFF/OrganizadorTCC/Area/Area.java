@@ -36,7 +36,7 @@ public class Area {
 	@ManyToMany(mappedBy = "areas") 
 	private List<Professor> professores;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "area")
 	private List<Projeto> projetos;
 	
 	

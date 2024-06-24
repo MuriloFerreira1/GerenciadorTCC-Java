@@ -15,10 +15,46 @@
 			<input type="hidden" name="id" th:value="${projeto?.id}">
 			
 			<div>
+				<label for="nome"> Nome: </label>
+	            <input type="text" id="Nome" name="Nome" th:value="${projeto?.Nome}">
+	        </div>
+	        <div>
 	            <label for="descricao"> Descrição: </label>
 	            <input type="text" id="descricao" name="descricao" th:value="${projeto?.descricao}">
+	        </div>
+	        <div>    
+	            <label for="professor">Professor</label>
+	            <select id="professor" name="professor">
+	            	<option></option>
+	            	<option th:each="professor:${professores}" 
+	            		th:value="${professor.id}" 
+	            		th:text="${professor.nome}">
+	            		Wireframe
+	            	</option>
+	            </select>
 	        </div>	 
-	           
+	        <div>    
+	            <label for="area">Area</label>
+	            <select id="area" name="area">
+	            	<option></option>
+	            	<option th:each="area:${areas}"
+	            		th:value="${area.id}" 
+	            		th:text="${area.nome}">
+	            		Wireframe
+	            	</option>
+	            </select>
+	        </div>
+	        <div>    
+	            <label for="alunos">Alunos</label>
+	            <select multiple id="alunos" name="alunos">
+	            	<option></option>
+	            	<option th:each="aluno:${alunos}" 
+	            		th:value="${aluno.id}" 
+	            		th:text="${aluno.nome}">
+	            		Wireframe
+	            	</option>
+	            </select>
+	        </div>
 	        <input type="submit" value="Cadastrar">
         </form>
     </div>

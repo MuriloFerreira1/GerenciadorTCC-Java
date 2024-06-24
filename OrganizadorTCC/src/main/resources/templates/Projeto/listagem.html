@@ -8,18 +8,28 @@
 <body>
 <div layout:fragment="conteudo">
     <h1> Lista de Projetos</h1>
-    <a href="/projeto/listagem">Novo</a>
+    <a href="/projeto/formulario">Novo</a>
     <table>
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Descricao</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="projeto : ${lista}">
 				<td th:text="${projeto.nome}"></td>
                 <td th:text="${projeto.descricao}"></td>
+                <td>
+						<a th:href="@{/professor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
+						
+						<form action="/professor" method="post">
+							<input type="hidden" name="_method" value="delete">
+							<input type="hidden" name="id" th:value="${professor.id}">
+							<input type="submit" value="Excluir">
+						</form>
+					</td>
             </tr>
         </tbody>
     </table>
