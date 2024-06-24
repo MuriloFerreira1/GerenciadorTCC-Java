@@ -36,7 +36,7 @@ public class Projeto {
 	
 	@OneToMany
 	private List<Aluno> alunos;
-	
+	//
 	@OneToOne
 	@JoinColumn(name = "professor_id")
 	private Professor professor;

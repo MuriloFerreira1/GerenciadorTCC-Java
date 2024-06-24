@@ -28,13 +28,13 @@
 	        </div>	 
 	        <div>
 	        	<label for="areas">Areas</label>
-	        	<select id="areas" name="areas">
+	        	<select multiple id="areas" name="areas">
 					<option></option>
 					<option th:each="area: ${areas}" 
 						th:value="${area.id}" 
 						th:text="${area.nome}"
 						th:type="checkbox"
-						th:attr="onclick='${professor?.areas.add(area)}'">
+						th:attr="onclick=''">
 						Wireframe
 					</option>
 				</select>

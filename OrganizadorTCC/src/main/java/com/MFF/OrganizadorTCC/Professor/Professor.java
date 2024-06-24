@@ -36,16 +36,16 @@ public class Professor {
 	private String nome;
 	private String curso;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "professor")
 	private List<Projeto> projetos;
 	
 	@ManyToMany
 	@JoinTable(
 			name = "area_professor",
 			joinColumns= 
-				@JoinColumn(name = "Area_id"),
+				@JoinColumn(name = "Professor_id", referencedColumnName = "id"),
 			inverseJoinColumns= 
-				@JoinColumn(name = "Professor_id")
+				@JoinColumn(name = "Area_id", referencedColumnName = "id")
 			)
 	private List<Area> areas;
 	
