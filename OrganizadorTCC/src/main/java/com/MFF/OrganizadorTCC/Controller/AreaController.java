@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Area.AreaRepository;
 import com.MFF.OrganizadorTCC.Area.DadosAtualizaArea;
 import com.MFF.OrganizadorTCC.Area.DadosCadastroArea;
 import com.MFF.OrganizadorTCC.Professor.Professor;
 import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Projeto.Projeto;
+import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -29,6 +32,9 @@ public class AreaController {
 	
 	@Autowired
 	private ProfessorRepository profRepo;
+	
+	@Autowired
+	private ProjetoRepository projetoRepo;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
@@ -72,6 +78,11 @@ public class AreaController {
 				}
 			}
 			prof.setAreas(areas);
+		}
+		
+		List<Projeto> projetos = projetoRepo.findAll();
+		for (Projeto projeto : projetos) {
+			projeto.setArea(null);
 		}
 		repository.deleteById(id);
 		return "redirect:area";

@@ -35,6 +35,7 @@ public class Projeto {
 	private String descricao;
 	
 	@OneToMany
+	@JoinColumn(name = "projeto_id")
 	private List<Aluno> alunos;
 	
 	@OneToOne

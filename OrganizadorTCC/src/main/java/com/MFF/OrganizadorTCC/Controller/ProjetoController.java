@@ -1,16 +1,27 @@
 package com.MFF.OrganizadorTCC.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.MFF.OrganizadorTCC.Aluno.Aluno;
 import com.MFF.OrganizadorTCC.Aluno.AlunoRepository;
+import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Area.AreaRepository;
+import com.MFF.OrganizadorTCC.Professor.Professor;
 import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Projeto.DadosAtualizaProjeto;
+import com.MFF.OrganizadorTCC.Projeto.DadosCadastroProjeto;
+import com.MFF.OrganizadorTCC.Projeto.Projeto;
 import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 
 import jakarta.transaction.Transactional;
@@ -49,7 +60,45 @@ public class ProjetoController {
 	
 	@PostMapping
 	@Transactional
-	public String cadastra() {
+	public String cadastra(DadosCadastroProjeto dados) {
+		repository.save(relacionaProjeto((long)0,dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
 		return "redirect:projeto";
 	}
+	
+	@PutMapping
+	@Transactional
+	public String atualiza(DadosAtualizaProjeto dados) {
+		repository.save(relacionaProjeto(dados.id(),dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
+		return "redirect:projeto";
+	}
+	
+	@DeleteMapping
+	@Transactional
+	public String deleta(Long id) {
+		repository.deleteById(id);
+		return "redirect:projeto";
+	}
+	
+	private Projeto relacionaProjeto(Long id, String nome, String descricao, List<Aluno> alunos, Professor professor, Area area) {
+		Projeto projeto = new Projeto();
+		if(id!=0) {
+			projeto = repository.getReferenceById(id);
+		}else {
+			projeto.setId(id);
+			projeto.setNome(nome);
+			projeto.setDescricao(descricao);
+		}
+		professor = profRepo.getReferenceById(professor.getId());
+		List<Long> ids = new ArrayList<Long>();
+		for(Aluno aluno: alunos) {
+			ids.add(aluno.getId());
+		}
+		alunos = alunoRepo.findAllById(ids);
+		area = areaRepo.getReferenceById(area.getId());
+		projeto.setProfessor(professor);
+		projeto.setAlunos(alunos);
+		projeto.setArea(area);
+		return projeto;
+	}
+	
 }

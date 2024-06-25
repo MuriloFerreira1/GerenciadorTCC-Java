@@ -31,7 +31,6 @@ public class Aluno {
 	private String curso;
 	
 	@OneToOne
-	@JoinColumn(name = "projeto_id")
 	private Projeto projeto;
 	
 	public Aluno(DadosCadastroAluno dados) {

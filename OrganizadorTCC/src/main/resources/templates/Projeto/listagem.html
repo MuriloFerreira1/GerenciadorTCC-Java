@@ -14,6 +14,9 @@
             <tr>
                 <th>Nome</th>
                 <th>Descricao</th>
+                <th>Alunos</th>
+                <th>Professor orientador</th>
+                <th>Área</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -22,14 +25,19 @@
 				<td th:text="${projeto.nome}"></td>
                 <td th:text="${projeto.descricao}"></td>
                 <td>
-						<a th:href="@{/professor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
+                	<p th:each="aluno: ${projeto.alunos}" th:text="${aluno.nome}"></p>
+                </td>
+                <td th:text="${projeto.professor.nome}"></td>
+                <td th:text="${projeto.area.nome}"></td>
+                <td>
+					<a th:href="@{/projeto/formulario?id={id}(id=${projeto.id})}"><button>Editar</button></a> 
 						
-						<form action="/professor" method="post">
-							<input type="hidden" name="_method" value="delete">
-							<input type="hidden" name="id" th:value="${professor.id}">
-							<input type="submit" value="Excluir">
-						</form>
-					</td>
+					<form action="/projeto" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="id" th:value="${projeto.id}">
+						<input type="submit" value="Excluir">
+					</form>
+				</td>
             </tr>
         </tbody>
     </table>
