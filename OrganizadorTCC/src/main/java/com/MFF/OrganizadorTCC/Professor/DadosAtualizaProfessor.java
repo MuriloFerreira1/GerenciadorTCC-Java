@@ -10,6 +10,8 @@ public record DadosAtualizaProfessor(
 		@NotNull
 		Long id,
 		Long RM,
+		Long CPF,
+		String email,
 		String nome,
 		String curso,
 		List<Area> areas) {

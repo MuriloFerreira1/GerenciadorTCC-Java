@@ -25,6 +25,9 @@ public class Aluno {
 	@Column(name = "id")
 	private long id;
 	private long RM;
+	private long CPF;
+	private String email;
+	private String senha;
 	private String nome;
 	private String turma;
 	private String curso;
@@ -35,13 +38,18 @@ public class Aluno {
 	public Aluno(DadosCadastroAluno dados) {
 		//System.out.println(dados.RM()+"|"+dados.nome()+"|"+dados.curso()+"|"+dados.turma());
 		this.RM = dados.RM();
+		this.CPF = dados.CPF();
+		this.email = dados.email();
 		this.nome = dados.nome();
 		this.turma = dados.turma();
 		this.curso = dados.curso();
 	}
 	
 	public void AtualizarAluno(DadosAtualizaAluno dados) {
+		this.id = dados.id();
 		this.RM = dados.RM();
+		this.CPF = dados.CPF();
+		this.email = dados.email();
 		this.nome = dados.nome();
 		this.turma = dados.turma();
 		this.curso = dados.curso();

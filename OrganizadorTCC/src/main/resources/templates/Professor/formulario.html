@@ -13,10 +13,26 @@
         <form method="post" action="/professor">
 			<input type="hidden" name="_method" value="put" th:if="${professor!= null}">
 			<input type="hidden" name="id" th:value="${professor?.id}">
-			
+				<div th:if="${professor!= null}">
+					<label for="RM"> RM: </label>
+					<input type="text" id="RM" name="RM" th:value="${professor?.RM}" readonly>
+				</div>
+				<div th:if="${professor!= null}">
+					<label for="CPF"> CPF: </label>
+		            <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}" readonly>
+				</div>
+				
+				<div th:if="${professor== null}">
+					<label for="RM"> RM: </label>
+		            <input type="text" id="RM" name="RM" th:value="${professor?.RM}">
+				</div>
+				<div th:if="${professor== null}">
+					<label for="CPF"> CPF: </label>
+			        <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}">
+				</div>
 			<div>
-				<label for="RM"> RM: </label>
-	            <input type="text" id="RM" name="RM" th:value="${professor?.RM}">
+				<label for="email"> Email: </label>
+	            <input type="text" id="email" name="email" th:value="${professor?.email}">
 			</div>
 			<div>
 	            <label for="nome"> Nome: </label>
@@ -24,7 +40,9 @@
 	        </div>
 	        <div>
 	            <label for="curso"> Curso: </label>
-	            <input type="text" id="curso" name="curso" th:value="${professor?.curso}">
+	            <select id="curso" name="curso">
+	            	<option th:each="curso: ${cursos}" th:text="${curso}"></option>
+	            </select>
 	        </div>	 
 	        <div>
 	        	<label for="areas">Areas</label>

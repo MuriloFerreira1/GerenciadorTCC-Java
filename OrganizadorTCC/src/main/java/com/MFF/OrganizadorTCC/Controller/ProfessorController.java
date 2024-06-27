@@ -20,6 +20,7 @@ import com.MFF.OrganizadorTCC.Professor.DadosAtualizaProfessor;
 import com.MFF.OrganizadorTCC.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Professor.Professor;
 import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Util.Cursos;
 
 import jakarta.transaction.Transactional;
 
@@ -45,6 +46,7 @@ public class ProfessorController {
 			var professor = repository.getReferenceById(id);
 			model.addAttribute(professor);
 		}
+		model.addAttribute("cursos", new Cursos().getCursos());
 		model.addAttribute("areas", areaRepo.findAll());
 		return "/professor/formulario";
 	}

@@ -13,10 +13,26 @@
         <form method="post" action="/aluno">
 			<input type="hidden" name="_method" value="put" th:if="${aluno!= null}">
 			<input type="hidden" name="id" th:value="${aluno?.id}">
-			
+				<div th:if="${aluno!= null}">
+					<label for="RM"> RM: </label>
+					<input type="text" id="RM" name="RM" th:value="${aluno?.RM}" readonly>
+				</div>
+				<div th:if="${aluno!= null}">
+					<label for="CPF"> CPF: </label>
+		            <input type="text" id="CPF" name="CPF" th:value="${aluno?.CPF}" readonly>
+				</div>
+				
+				<div th:if="${aluno == null}">
+					<label for="RM"> RM: </label>
+		            <input type="text" id="RM" name="RM" th:value="${aluno?.RM}">
+				</div>
+				<div th:if="${aluno == null}">
+					<label for="CPF"> CPF: </label>
+			        <input type="text" id="CPF" name="CPF" th:value="${aluno?.CPF}">
+				</div>
 			<div>
-				<label for="RM"> RM: </label>
-	            <input type="text" id="RM" name="RM" th:value="${aluno?.RM}">
+				<label for="email"> Email: </label>
+	            <input type="text" id="email" name="email" th:value="${aluno?.email}">
 			</div>
 			<div>
 	            <label for="nome"> Nome: </label>
@@ -27,8 +43,10 @@
 	            <input type="text" id="turma" name="turma" th:value="${aluno?.turma}">
 	        </div>
 	        <div>
-	            <label for="curso"> Curso: </label>
-	            <input type="text" id="curso" name="curso" th:value="${aluno?.curso}">
+	        	<label for="curso"></label>
+	            <select id="curso" name="curso">
+	            	<option th:each="curso : ${cursos}" th:text="${curso}">
+	            </select>
 	        </div>	 
 	           
 	        <input type="submit" value="Cadastrar">

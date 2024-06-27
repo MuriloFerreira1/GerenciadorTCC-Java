@@ -33,6 +33,9 @@ public class Professor {
 	@Column(name = "id")
 	private long id;
 	private long RM;
+	private long CPF;
+	private String email;
+	private String senha;
 	private String nome;
 	private String curso;
 	
@@ -51,6 +54,8 @@ public class Professor {
 	
 	public Professor(DadosCadastroProfessor dados) {
 		this.RM = dados.RM();
+		this.CPF = dados.CPF();
+		this.email = dados.email();
 		this.nome = dados.nome();
 		this.curso = dados.curso();
 	}
@@ -58,6 +63,8 @@ public class Professor {
 	public void atualizaProfessor(DadosAtualizaProfessor dados) {
 		this.id = dados.id();
 		this.nome = dados.nome();
+		this.CPF = dados.CPF();
+		this.email = dados.email();
 		this.curso = dados.curso();
 	}
 	

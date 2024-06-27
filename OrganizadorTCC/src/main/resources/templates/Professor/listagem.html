@@ -13,6 +13,8 @@
         <thead>
             <tr>
             	<th>RM</th>
+            	<th>CPF</th>
+            	<th>E-mail</th>
                 <th>Nome</th>
                 <th>Curso</th>
                 <th>Areas</th>
@@ -22,7 +24,9 @@
         <tbody>
 	        <tr th:each="professor : ${lista}">
 	            <td th:text="${professor.RM}"></td>
-				<td th:text="${professor.nome}"></td>
+				<td th:text="${professor.CPF}"></td>
+	            <td th:text="${professor.email}"></td>
+	            <td th:text="${professor.nome}"></td>
 	            <td th:text="${professor.curso}"></td>
 	            <td>
 	               	<p th:each="area:${professor.areas}" th:text="${area.nome}"></p>

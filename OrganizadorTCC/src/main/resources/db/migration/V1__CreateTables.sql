@@ -8,6 +8,9 @@ create table if not exists areas(
 create table if not exists professores(
 	id bigint not null auto_increment,
 	RM bigint not null,
+	CPF bigint not null,
+	email varchar(255),
+	senha varchar(255),
 	nome varchar(40),
 	curso varchar(40),
 	organizador smallint(1),
@@ -17,6 +20,9 @@ create table if not exists professores(
 create table if not exists alunos(
 	id bigint not null auto_increment,
 	RM bigint not null,
+	CPF bigint not null,
+	email varchar(255),
+	senha varchar(255),
 	projeto_id bigint,
 	nome varchar(40),
 	curso varchar(40),

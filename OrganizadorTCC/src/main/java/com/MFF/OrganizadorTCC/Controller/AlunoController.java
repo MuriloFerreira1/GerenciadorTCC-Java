@@ -14,6 +14,7 @@ import com.MFF.OrganizadorTCC.Aluno.Aluno;
 import com.MFF.OrganizadorTCC.Aluno.AlunoRepository;
 import com.MFF.OrganizadorTCC.Aluno.DadosAtualizaAluno;
 import com.MFF.OrganizadorTCC.Aluno.DadosCadastroAluno;
+import com.MFF.OrganizadorTCC.Util.Cursos;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -37,6 +38,7 @@ public class AlunoController {
 			var Aluno = repository.getReferenceById(id);
 			model.addAttribute("aluno", Aluno);
 		}
+		model.addAttribute("cursos", new Cursos().getCursos());
 		return "/aluno/formulario";
 	}
 	
