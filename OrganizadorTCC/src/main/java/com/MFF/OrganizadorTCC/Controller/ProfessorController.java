@@ -2,7 +2,6 @@ package com.MFF.OrganizadorTCC.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Area.AreaRepository;
-import com.MFF.OrganizadorTCC.Area.AreaService;
 import com.MFF.OrganizadorTCC.Professor.DadosAtualizaProfessor;
 import com.MFF.OrganizadorTCC.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Professor.Professor;
