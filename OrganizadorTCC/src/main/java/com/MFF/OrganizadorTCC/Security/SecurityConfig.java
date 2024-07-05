@@ -1,8 +1,11 @@
 package com.MFF.OrganizadorTCC.Security;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,9 +14,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -22,10 +27,12 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-		http.authorizeHttpRequests((authorize) -> {
-			authorize.requestMatchers("/professor").permitAll().anyRequest().authenticated();
-		});
-		http.formLogin((page) -> page.loginPage("/login.html"));
+		http.authorizeHttpRequests((authorize) -> 
+			authorize.requestMatchers("/login/**","/css/**", "/aluno/**").permitAll().anyRequest().authenticated()
+		);
+		http.csrf((csrf) -> 
+			csrf.disable()
+		);
 		return http.build();
 	}
 	
@@ -45,12 +52,17 @@ public class SecurityConfig {
 	
 	@Bean
 	public UserDetailsService userDetailsService() {
-		UserDetails userDetails = User.withDefaultPasswordEncoder().username("email").password("senha").roles("USER").build();
-		return new InMemoryUserDetailsManager(userDetails);
+		JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource());
+		return users;
 	}
+	
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+	
+	@Bean DataSource dataSource() {
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION).build();
 	}
 }

@@ -1,6 +1,10 @@
 package com.MFF.OrganizadorTCC.Professor;
 
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Projeto.Projeto;
@@ -28,7 +32,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class Professor {
+public class Professor implements UserDetails{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
@@ -66,6 +70,21 @@ public class Professor {
 		this.CPF = dados.CPF();
 		this.email = dados.email();
 		this.curso = dados.curso();
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of();
+	}
+
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return this.email;
 	}
 	
 }

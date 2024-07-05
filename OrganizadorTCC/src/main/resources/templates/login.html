@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{template.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <title>Login</title>
-
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
 </head>
 <body>
 	<div layout:fragment="conteudo"></div>
@@ -13,11 +13,11 @@
 			<form method="post" action="/login">
 				<div>
 					<label for="email">E-mail</label>
-					<input type="text" id="email" name="email" th:value="${LoginRequest?.email}">
+					<input type="text" id="email" name="email" th:value="${loginRequest?.email}">
 				</div>
 				<div>
 					<label for="senha">Senha</label>
-					<input type="text" id="senha" name="senha" th:value="${LoginRequest?.senha}">
+					<input type="text" id="senha" name="senha" th:value="${loginRequest?.senha}">
 				</div>
 				<input type="submit" th:value="Entrar">
 			</form>
