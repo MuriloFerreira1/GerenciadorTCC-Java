@@ -25,6 +25,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests((authorize) -> {
 			authorize.requestMatchers("/professor").permitAll().anyRequest().authenticated();
 		});
+		http.formLogin((page) -> page.loginPage("/login.html"));
 		return http.build();
 	}
 	

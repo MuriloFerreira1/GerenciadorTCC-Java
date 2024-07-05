@@ -1,7 +1,10 @@
 package com.MFF.OrganizadorTCC.Controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,16 +21,16 @@ public class LoginController {
 		this.authenticationManager = authenticationManager;
 	}
 	
-	@GetMapping
-	public String carregaPaginaLogon() {
-		return "/login/index";
-	}
-	
 	@PostMapping
-	public ResponseEntity<Void> login(@RequestBody LoginRequest loginRequest){
-		loginRequest.email();
-		loginRequest.senha();
-		return new ResponseEntity<Void>(null);
+	public Authentication login(@RequestBody LoginRequest loginRequest) throws Exception{
+		Authentication authenticationRequest = 
+				UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.email, loginRequest.senha);
+		Authentication authenticationResponse = 
+				this.authenticationManager.authenticate(authenticationRequest);
+		SecurityContext security = SecurityContextHolder.getContext();
+		security.setAuthentication(authenticationResponse);
+		
+		return security.getAuthentication();
 	}
 	
 	public record LoginRequest(String email, String senha) {}
