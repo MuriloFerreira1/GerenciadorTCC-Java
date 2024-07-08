@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Area.AreaRepository;
+import com.MFF.OrganizadorTCC.Area.AreaService;
 import com.MFF.OrganizadorTCC.Professor.DadosAtualizaProfessor;
 import com.MFF.OrganizadorTCC.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Professor.Professor;
@@ -32,7 +33,7 @@ public class ProfessorController {
 	private ProfessorRepository repository;
 	
 	@Autowired
-	private AreaRepository areaRepo;
+	private AreaService areaServ;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
@@ -47,7 +48,7 @@ public class ProfessorController {
 			model.addAttribute(professor);
 		}
 		model.addAttribute("cursos", new Cursos().getCursos());
-		model.addAttribute("areas", areaRepo.findAll());
+		model.addAttribute("areas", areaServ.getAll());
 		return "/professor/formulario";
 	}
 	
@@ -57,7 +58,7 @@ public class ProfessorController {
 		List<Long> id= new ArrayList<Long>();
 		for(Area area: dados.areas()) { id.add(area.getId()); }
 		List<Area> areas = id.stream()
-                .map(areaRepo::getReferenceById)
+                .map(areaServ::getById)
                 .collect(Collectors.toList());
 		
 		Professor professor = new Professor(dados);
@@ -73,7 +74,7 @@ public class ProfessorController {
 		List<Long> id= new ArrayList<Long>();
 		for(Area area: dados.areas()) { id.add(area.getId()); }
 		List<Area> areas = id.stream()
-                .map(areaRepo::getReferenceById)
+                .map(areaServ::getById)
                 .collect(Collectors.toList());
 		var professor = repository.getReferenceById(dados.id());
 		professor.setAreas(areas);

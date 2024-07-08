@@ -1,12 +1,7 @@
 package com.MFF.OrganizadorTCC.Aluno;
 
-import java.util.Collection;
-import java.util.List;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import com.MFF.OrganizadorTCC.Projeto.Projeto;
+import com.MFF.OrganizadorTCC.User.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,14 +21,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno implements UserDetails{
+public class Aluno extends User{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
 	private long RM;
 	private long CPF;
-	private String email;
-	private String senha;
 	private String nome;
 	private String turma;
 	private String curso;
@@ -45,7 +38,7 @@ public class Aluno implements UserDetails{
 		//System.out.println(dados.RM()+"|"+dados.nome()+"|"+dados.curso()+"|"+dados.turma());
 		this.RM = dados.RM();
 		this.CPF = dados.CPF();
-		this.email = dados.email();
+		setEmail(dados.email());
 		this.nome = dados.nome();
 		this.turma = dados.turma();
 		this.curso = dados.curso();
@@ -55,24 +48,10 @@ public class Aluno implements UserDetails{
 		this.id = dados.id();
 		this.RM = dados.RM();
 		this.CPF = dados.CPF();
-		this.email = dados.email();
+		setEmail(dados.email());
 		this.nome = dados.nome();
 		this.turma = dados.turma();
 		this.curso = dados.curso();
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of();
-	}
-
-	@Override
-	public String getPassword() {
-		return this.senha;
-	}
-
-	@Override
-	public String getUsername() {
-		return this.email;
-	}
 }
