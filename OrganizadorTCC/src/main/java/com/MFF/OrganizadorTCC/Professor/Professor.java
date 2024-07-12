@@ -1,9 +1,12 @@
 package com.MFF.OrganizadorTCC.Professor;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.MFF.OrganizadorTCC.Area.Area;
@@ -40,7 +43,8 @@ public class Professor extends User{
 	private long RM;
 	private long CPF;
 	private String nome;
-	private String curso;
+	private String curso;	
+	private boolean organizador;
 	
 	@OneToMany(mappedBy = "professor")
 	private List<Projeto> projetos;
@@ -69,6 +73,16 @@ public class Professor extends User{
 		this.CPF = dados.CPF();
 		setEmail(dados.email());
 		this.curso = dados.curso();
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new LinkedList<GrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority("ROLE_PROFESSOR"));
+		if (organizador) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"));
+		}
+		return authorities;
 	}
 	
 }

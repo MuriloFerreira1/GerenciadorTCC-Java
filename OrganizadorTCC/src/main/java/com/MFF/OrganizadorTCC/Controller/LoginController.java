@@ -27,19 +27,18 @@ public class LoginController {
 	
 	@PostMapping
 	public String login(LoginRequest loginRequest) throws Exception{
-		System.out.println(loginRequest.email()); 
 		Authentication authenticationRequest = 
 				UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.email, loginRequest.senha);
 		Authentication authenticationResponse = 
 				this.authenticationManager.authenticate(authenticationRequest);
 		
+		System.out.println("Autenticado");
+		
 		SecurityContext security = SecurityContextHolder.getContext();
 		security.setAuthentication(authenticationResponse);
 		SecurityContextHolder.setContext(security);
 		
-		
-		
-		return "";
+		return "redirect:";
 	}
 	
 	public record LoginRequest(String email, String senha) {}
