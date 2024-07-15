@@ -32,6 +32,11 @@ body {
 ol, ul {
     list-style: none;
 }
+
+.direita{
+	float: right
+}
+
 blockquote, q {
     quotes: none;
 }

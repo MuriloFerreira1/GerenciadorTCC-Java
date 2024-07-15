@@ -78,6 +78,7 @@ public class Professor extends User{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new LinkedList<GrantedAuthority>();
+		
 		authorities.add(new SimpleGrantedAuthority("ROLE_PROFESSOR"));
 		if (organizador) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"));
