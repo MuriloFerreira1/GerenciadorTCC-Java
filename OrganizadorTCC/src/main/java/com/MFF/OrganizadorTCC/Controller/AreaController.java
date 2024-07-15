@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +26,7 @@ import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 import jakarta.transaction.Transactional;
 
 @Controller
-@RequestMapping("/area")
+@RequestMapping("/controleArea")
 public class AreaController {
 	@Autowired
 	private AreaRepository repository;

@@ -10,7 +10,7 @@
 	<div layout:fragment="conteudo">
     <div class="box">
         <h1>Cadastro Aluno</h1>
-        <form method="post" action="/aluno">
+        <form method="post" action="/controleAluno">
 			<input type="hidden" name="_method" value="put" th:if="${aluno!= null}">
 			<input type="hidden" name="id" th:value="${aluno?.id}">
 				<div th:if="${aluno!= null}">

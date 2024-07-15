@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org"
+<html lang="en" 
+	  xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{template.html}"
->
+      layout:decorate="~{template.html}">
+      
 <head>
     <title>Cadastro professor</title>
 </head>
@@ -10,7 +11,7 @@
 	<div layout:fragment="conteudo">
     <div class="box">
         <h1>Cadastro professor</h1>
-        <form method="post" action="/professor">
+        <form method="post" action="/controleProfessor">
 			<input type="hidden" name="_method" value="put" th:if="${professor!= null}">
 			<input type="hidden" name="id" th:value="${professor?.id}">
 				<div th:if="${professor!= null}">

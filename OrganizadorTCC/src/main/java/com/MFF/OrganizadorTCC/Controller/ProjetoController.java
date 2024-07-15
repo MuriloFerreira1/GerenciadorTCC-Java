@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.MFF.OrganizadorTCC.Aluno.Aluno;
-import com.MFF.OrganizadorTCC.Aluno.AlunoRepository;
+import com.MFF.OrganizadorTCC.Aluno.AlunoService;
 import com.MFF.OrganizadorTCC.Area.Area;
-import com.MFF.OrganizadorTCC.Area.AreaRepository;
+import com.MFF.OrganizadorTCC.Area.AreaService;
 import com.MFF.OrganizadorTCC.Professor.Professor;
-import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Professor.ProfessorService;
 import com.MFF.OrganizadorTCC.Projeto.DadosAtualizaProjeto;
 import com.MFF.OrganizadorTCC.Projeto.DadosCadastroProjeto;
 import com.MFF.OrganizadorTCC.Projeto.Projeto;
@@ -27,19 +27,19 @@ import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 import jakarta.transaction.Transactional;
 
 @Controller
-@RequestMapping("/projeto")
+@RequestMapping("/controleProjeto")
 public class ProjetoController {
 	@Autowired
 	private ProjetoRepository repository;
 	
 	@Autowired
-	private ProfessorRepository profRepo;
+	private ProfessorService profRepo;
 	
 	@Autowired
-	private AlunoRepository alunoRepo;
+	private AlunoService alunoRepo;
 	
 	@Autowired
-	private AreaRepository areaRepo;
+	private AreaService areaRepo;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
@@ -52,9 +52,10 @@ public class ProjetoController {
 		if(id!=null) {
 			model.addAttribute(repository.getReferenceById(id));
 		}
-		model.addAttribute("areas", areaRepo.findAll(Sort.by("nome").ascending()));
-		model.addAttribute("professores", profRepo.findAll(Sort.by("nome").ascending()));
-		model.addAttribute("alunos", alunoRepo.findAll(Sort.by("nome").ascending()));
+		model.addAttribute("areas", areaRepo.getAll());
+		model.addAttribute("professores", profRepo.getAll());
+		model.addAttribute("alunos", alunoRepo.getAll());
+		
 		return "/projeto/formulario";
 	}
 	
@@ -88,13 +89,13 @@ public class ProjetoController {
 			projeto.setNome(nome);
 			projeto.setDescricao(descricao);
 		}
-		professor = profRepo.getReferenceById(professor.getId());
+		professor = profRepo.getById(professor.getId());
 		List<Long> ids = new ArrayList<Long>();
 		for(Aluno aluno: alunos) {
 			ids.add(aluno.getId());
 		}
-		alunos = alunoRepo.findAllById(ids);
-		area = areaRepo.getReferenceById(area.getId());
+		alunos = alunoRepo.getAllById(ids);
+		area = areaRepo.getById(area.getId());
 		projeto.setProfessor(professor);
 		projeto.setAlunos(alunos);
 		projeto.setArea(area);
