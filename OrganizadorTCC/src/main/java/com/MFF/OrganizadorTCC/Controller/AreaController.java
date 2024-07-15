@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.MFF.OrganizadorTCC.Area.Area;
-import com.MFF.OrganizadorTCC.Area.AreaRepository;
-import com.MFF.OrganizadorTCC.Area.DadosAtualizaArea;
-import com.MFF.OrganizadorTCC.Area.DadosCadastroArea;
-import com.MFF.OrganizadorTCC.Professor.Professor;
-import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
-import com.MFF.OrganizadorTCC.Projeto.Projeto;
-import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
+import com.MFF.OrganizadorTCC.Model.Area.Area;
+import com.MFF.OrganizadorTCC.Model.Area.AreaRepository;
+import com.MFF.OrganizadorTCC.Model.Area.DadosAtualizaArea;
+import com.MFF.OrganizadorTCC.Model.Area.DadosCadastroArea;
+import com.MFF.OrganizadorTCC.Model.Professor.Professor;
+import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
+import com.MFF.OrganizadorTCC.Model.Projeto.ProjetoRepository;
 
 import jakarta.transaction.Transactional;
 

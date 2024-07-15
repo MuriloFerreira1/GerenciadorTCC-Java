@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.MFF.OrganizadorTCC.Area.Area;
-import com.MFF.OrganizadorTCC.Area.AreaService;
-import com.MFF.OrganizadorTCC.Professor.DadosAtualizaProfessor;
-import com.MFF.OrganizadorTCC.Professor.DadosCadastroProfessor;
-import com.MFF.OrganizadorTCC.Professor.Professor;
-import com.MFF.OrganizadorTCC.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Model.Area.Area;
+import com.MFF.OrganizadorTCC.Model.Professor.DadosAtualizaProfessor;
+import com.MFF.OrganizadorTCC.Model.Professor.DadosCadastroProfessor;
+import com.MFF.OrganizadorTCC.Model.Professor.Professor;
+import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Service.AreaService;
 import com.MFF.OrganizadorTCC.Util.Util;
 
 import jakarta.transaction.Transactional;
