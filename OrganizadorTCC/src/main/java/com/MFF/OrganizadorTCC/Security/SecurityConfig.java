@@ -22,12 +22,14 @@ public class SecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-		http.authorizeHttpRequests((authorize) -> 
-			authorize.requestMatchers("/login/**","/css/**", "/professor/**", "/aluno/**").permitAll().anyRequest().authenticated()
-		).csrf((csrf) -> csrf.disable())
-		.formLogin((login)->
-			login.loginPage("/login").usernameParameter("email").passwordParameter("senha").defaultSuccessUrl("/")
-		);
+		http
+			.authorizeHttpRequests((authorize) -> authorize
+				.requestMatchers("/login/**","/css/**").permitAll()
+				.requestMatchers("/controleAluno/**","/controleArea/**","/controleProfessor/**","/controleProjeto/**").hasRole("ADMINISTRADOR").anyRequest().authenticated()
+			).csrf((csrf) -> csrf.disable())
+			.formLogin((login)->
+				login.loginPage("/login").usernameParameter("email").passwordParameter("senha").defaultSuccessUrl("/")
+			);
 		return http.build();
 	}
 	

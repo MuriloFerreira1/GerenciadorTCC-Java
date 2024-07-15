@@ -27,7 +27,7 @@ import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 import jakarta.transaction.Transactional;
 
 @Controller
-@RequestMapping("/projeto")
+@RequestMapping("/controleProjeto")
 public class ProjetoController {
 	@Autowired
 	private ProjetoRepository repository;

@@ -28,7 +28,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/aluno")
+@RequestMapping("/controleAluno")
 public class AlunoController {
 	
 	@Autowired

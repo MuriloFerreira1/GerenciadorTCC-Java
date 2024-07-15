@@ -32,7 +32,7 @@ import com.MFF.OrganizadorTCC.Util.Util;
 import jakarta.transaction.Transactional;
 
 @Controller
-@RequestMapping("/professor")
+@RequestMapping("/controleProfessor")
 public class ProfessorController {
 	
 	@Autowired

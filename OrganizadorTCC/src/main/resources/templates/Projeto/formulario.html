@@ -10,7 +10,7 @@
 	<div layout:fragment="conteudo">
     <div class="box">
         <h1>Cadastro projeto</h1>
-        <form method="post" action="/projeto">
+        <form method="post" action="/controleProjeto">
 			<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
 			<input type="hidden" name="id" th:value="${projeto?.id}">
 			

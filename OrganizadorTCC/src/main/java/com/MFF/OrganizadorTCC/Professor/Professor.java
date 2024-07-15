@@ -4,10 +4,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import com.MFF.OrganizadorTCC.Area.Area;
 import com.MFF.OrganizadorTCC.Projeto.Projeto;

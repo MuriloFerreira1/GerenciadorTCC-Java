@@ -8,7 +8,7 @@
 <body>
 <div layout:fragment="conteudo">
     <h1> Lista de professors</h1>
-    <a href="/professor/formulario">Novo</a>
+    <a href="/controleProfessor/formulario">Novo</a>
     <table>
         <thead>
             <tr>
@@ -32,9 +32,9 @@
 	               	<p th:each="area:${professor.areas}" th:text="${area.nome}"></p>
 	            </td>
 	            <td>
-					<a th:href="@{/professor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
+					<a th:href="@{/controleProfessor/formulario?id={id}(id=${professor.id})}"><button>Editar</button></a> 
 						
-					<form action="/professor" method="post">
+					<form action="/controleProfessor" method="post">
 						<input type="hidden" name="_method" value="delete">
 						<input type="hidden" name="id" th:value="${professor.id}">
 						<input type="submit" value="Excluir">

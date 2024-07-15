@@ -26,7 +26,7 @@ import com.MFF.OrganizadorTCC.Projeto.ProjetoRepository;
 import jakarta.transaction.Transactional;
 
 @Controller
-@RequestMapping("/area")
+@RequestMapping("/controleArea")
 public class AreaController {
 	@Autowired
 	private AreaRepository repository;

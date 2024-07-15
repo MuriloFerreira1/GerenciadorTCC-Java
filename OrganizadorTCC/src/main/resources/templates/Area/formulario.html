@@ -10,7 +10,7 @@
 	<div layout:fragment="conteudo">
     <div class="box">
         <h1>Cadastro Area</h1>
-        <form method="post" action="/area">
+        <form method="post" action="/controleArea">
 			<input type="hidden" name="_method" value="put" th:if="${area!= null}">
 			<input type="hidden" name="id" th:value="${area?.id}">
 			
