@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{template.html}">
+      layout:decorate="~{basicTemplate.html}">
 <head>
     <title>Página inicial</title>
 </head>
 <body>
 <div layout:fragment="conteudo">
-    <h1>Salve</h1>
+    <header>
+		<nav>
+			<ul>
+				<li><a th:href="@{/professor}">Página Inicial</a></li>
+				<li><a th:href="@{/professor}">Outra coisa</a></li>
+			</ul>
+		</nav>
+	</header>
 </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.MFF.OrganizadorTCC.Config;
+package com.MFF.OrganizadorTCC.Security;
 
 import java.util.Optional;
 

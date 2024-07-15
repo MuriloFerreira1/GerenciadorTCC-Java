@@ -44,7 +44,7 @@ public class ProjetoController {
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
-		return "/projeto/listagem";
+		return "/controller/projeto/listagem";
 	}
 	
 	@GetMapping("/formulario")
@@ -56,28 +56,28 @@ public class ProjetoController {
 		model.addAttribute("professores", profRepo.getAll());
 		model.addAttribute("alunos", alunoRepo.getAll());
 		
-		return "/projeto/formulario";
+		return "/controller/projeto/formulario";
 	}
 	
 	@PostMapping
 	@Transactional
 	public String cadastra(DadosCadastroProjeto dados) {
 		repository.save(relacionaProjeto((long)0,dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
-		return "redirect:projeto";
+		return "redirect:controleProjeto";
 	}
 	
 	@PutMapping
 	@Transactional
 	public String atualiza(DadosAtualizaProjeto dados) {
 		repository.save(relacionaProjeto(dados.id(),dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
-		return "redirect:projeto";
+		return "redirect:controleProjeto";
 	}
 	
 	@DeleteMapping
 	@Transactional
 	public String deleta(Long id) {
 		repository.deleteById(id);
-		return "redirect:projeto";
+		return "redirect:controleProjeto";
 	}
 	
 	private Projeto relacionaProjeto(Long id, String nome, String descricao, List<Aluno> alunos, Professor professor, Area area) {

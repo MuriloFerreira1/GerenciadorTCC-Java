@@ -34,6 +34,9 @@ public class Projeto {
 	private String nome;
 	private String descricao;
 	
+	private boolean aceito;
+	private String comentario;
+	
 	@OneToMany
 	@JoinColumn(name = "projeto_id")
 	private List<Aluno> alunos;

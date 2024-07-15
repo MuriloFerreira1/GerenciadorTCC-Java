@@ -43,7 +43,7 @@ public class AlunoController {
 	@GetMapping
 	public String carregaPaginaListagem(Model model){
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
-		return "/aluno/listagem";
+		return "/controller/aluno/listagem";
 	}
 	
 	@GetMapping("/formulario")
@@ -53,7 +53,7 @@ public class AlunoController {
 			model.addAttribute("aluno", Aluno);
 		}
 		model.addAttribute("cursos", Util.getCursos());
-		return "/aluno/formulario";
+		return "/controller/aluno/formulario";
 	}
 	
 	@PostMapping
@@ -62,7 +62,7 @@ public class AlunoController {
 		Aluno a = new Aluno(dados);
 		a.setSenha(passwordEncoder.encode(Util.senhaAleatoria()));
 		repository.save(new Aluno(dados));
-		return "redirect:aluno";
+		return "redirect:controleAluno";
 	}
 	
 	@PutMapping
@@ -70,14 +70,14 @@ public class AlunoController {
 	public String atualizar(@Valid DadosAtualizaAluno dados) {
 		var aluno = repository.getReferenceById(dados.id());
 		aluno.AtualizarAluno(dados);
-		return "redirect:aluno";
+		return "redirect:controleAluno";
 	}
 	
 	@DeleteMapping
 	@Transactional
 	public String deletar(@Valid Long id) {
 		repository.deleteById(id);
-		return "redirect:aluno";
+		return "redirect:controleAluno";
 	}
 	
 	
@@ -107,6 +107,6 @@ public class AlunoController {
 		}
 		reader.close();
 		repository.saveAll(alunos);
-		return "redirect:aluno";
+		return "redirect:controleAluno";
 	}
 }

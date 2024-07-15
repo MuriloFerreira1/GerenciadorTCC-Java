@@ -37,6 +37,15 @@ ol, ul {
 	float: right
 }
 
+h1.erro{
+	font-size: 150px
+}
+
+p.erro{
+	font-size: 75px;
+	color: black;
+}
+
 blockquote, q {
     quotes: none;
 }
@@ -127,7 +136,7 @@ button {
 /* NAVBAR */
 
 nav {
-    background-color: #5017f2;
+    background-color: var(--azul-medio);
     top: 0;
     left: 0;
     width: 100%;

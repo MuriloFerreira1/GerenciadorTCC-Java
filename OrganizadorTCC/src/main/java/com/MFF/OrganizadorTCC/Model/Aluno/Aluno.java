@@ -1,5 +1,11 @@
 package com.MFF.OrganizadorTCC.Model.Aluno;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
 import com.MFF.OrganizadorTCC.Model.User.User;
 
@@ -51,6 +57,11 @@ public class Aluno extends User{
 		this.nome = dados.nome();
 		this.turma = dados.turma();
 		this.curso = dados.curso();
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_ALUNO"));
 	}
 
 }

@@ -50,7 +50,7 @@ public class ProfessorController {
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
-		return "/professor/listagem";
+		return "/controller/professor/listagem";
 	}
 	
 	@GetMapping("/formulario")
@@ -61,7 +61,7 @@ public class ProfessorController {
 		}
 		model.addAttribute("cursos", Util.getCursos());
 		model.addAttribute("areas", areaServ.getAll());
-		return "/professor/formulario";
+		return "/controller/professor/formulario";
 	}
 	
 	@PostMapping
@@ -77,7 +77,7 @@ public class ProfessorController {
 		professor.setAreas(areas);
 		repository.save(professor);
 		
-		return "redirect:professor";
+		return "redirect:controleProfessor";
 	}
 	
 	@PutMapping
@@ -91,14 +91,14 @@ public class ProfessorController {
 		var professor = repository.getReferenceById(dados.id());
 		professor.setAreas(areas);
 		professor.atualizaProfessor(dados);
-		return "redirect:professor";
+		return "redirect:controleProfessor";
 	}
 	
 	@DeleteMapping
 	@Transactional
 	public String deleta(Long id) {
 		repository.deleteById(id);
-		return "redirect:professor";
+		return "redirect:controleProfessor";
 	}
 	
 	@GetMapping("/arquivo")
@@ -127,7 +127,7 @@ public class ProfessorController {
 		}
 		reader.close();
 		repository.saveAll(professores);
-		return "redirect:professor";
+		return "redirect:controleProfessor";
 	}
 	
 	@GetMapping("/especial")
@@ -136,6 +136,6 @@ public class ProfessorController {
 		Professor p = repository.getReferenceById((long) 1);
 		p.setSenha(passwordEncoder.encode(p.getSenha()));
 		repository.save(p);
-		return "redirect:professor";
+		return "redirect:controleProfessor";
 	}
 }

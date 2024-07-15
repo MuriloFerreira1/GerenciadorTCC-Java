@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,9 +18,9 @@ import com.MFF.OrganizadorTCC.Model.Area.AreaRepository;
 import com.MFF.OrganizadorTCC.Model.Area.DadosAtualizaArea;
 import com.MFF.OrganizadorTCC.Model.Area.DadosCadastroArea;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
-import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
 import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
-import com.MFF.OrganizadorTCC.Model.Projeto.ProjetoRepository;
+import com.MFF.OrganizadorTCC.Service.ProfessorService;
+import com.MFF.OrganizadorTCC.Service.ProjetoService;
 
 import jakarta.transaction.Transactional;
 
@@ -32,15 +31,15 @@ public class AreaController {
 	private AreaRepository repository;
 	
 	@Autowired
-	private ProfessorRepository profRepo;
+	private ProfessorService profServ;
 	
 	@Autowired
-	private ProjetoRepository projetoRepo;
+	private ProjetoService projetoServ;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
-		return "/area/listagem";
+		return "/controller/area/listagem";
 	}
 	
 	@GetMapping("/formulario")
@@ -49,14 +48,14 @@ public class AreaController {
 			var area = repository.getReferenceById(id);
 			model.addAttribute(area);
 		}
-		return "/area/formulario";
+		return "/controller/area/formulario";
 	}
 	
 	@PostMapping
 	@Transactional
 	public String cadastrar(DadosCadastroArea dados) {
 		repository.save(new Area(dados));
-		return "redirect:area";
+		return "redirect:controleArea";
 	}
 	
 	@PutMapping
@@ -64,13 +63,13 @@ public class AreaController {
 	public String atualizar(DadosAtualizaArea dados) {
 		var area = repository.getReferenceById(dados.id());
 		area.atualizaArea(dados);
-		return "redirect:area";
+		return "redirect:controleArea";
 	}
 	
 	@DeleteMapping
 	@Transactional
 	public String deletar(Long id) {
-		List<Professor> professores = profRepo.findAll();
+		List<Professor> professores = profServ.getAll();
 		for(Professor prof: professores) {
 			List<Area> areas = new ArrayList<Area>();
 			for(Area area : prof.getAreas()) {
@@ -81,11 +80,11 @@ public class AreaController {
 			prof.setAreas(areas);
 		}
 		
-		List<Projeto> projetos = projetoRepo.findAll();
+		List<Projeto> projetos = projetoServ.getAll();
 		for (Projeto projeto : projetos) {
 			projeto.setArea(null);
 		}
 		repository.deleteById(id);
-		return "redirect:area";
+		return "redirect:controleArea";
 	}
 }

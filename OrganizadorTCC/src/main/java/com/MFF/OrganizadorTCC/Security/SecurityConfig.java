@@ -1,4 +1,4 @@
-package com.MFF.OrganizadorTCC.Config;
+package com.MFF.OrganizadorTCC.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,10 @@ public class SecurityConfig {
 		http
 			.authorizeHttpRequests((authorize) -> authorize
 				.requestMatchers("/login/**","/css/**").permitAll()
-				.requestMatchers("/controleAluno/**","/controleArea/**","/controleProfessor/**","/controleProjeto/**").hasRole("ADMINISTRADOR").anyRequest().authenticated()
+				.requestMatchers("/controleProjeto/**").authenticated()
+				.requestMatchers("/aluno/**").hasRole("ALUNO")
+				.requestMatchers("/professor/**").hasRole("PROFESSOR")
+				.requestMatchers("/controleAluno/**","/controleArea/**","/controleProfessor/**").hasRole("ADMINISTRADOR").anyRequest().authenticated()
 			).csrf((csrf) -> csrf.disable())
 			.formLogin((login)->
 				login.loginPage("/login").usernameParameter("email").passwordParameter("senha").defaultSuccessUrl("/")
