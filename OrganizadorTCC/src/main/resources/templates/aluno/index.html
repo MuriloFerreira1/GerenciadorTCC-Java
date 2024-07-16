@@ -6,16 +6,49 @@
     <title>Página inicial</title>
 </head>
 <body>
-	<header>
-		<nav>
-			<ul>
-				<li><a th:href="@{/aluno}">Página Inicial</a></li>
-				<li><a th:href="@{/aluno}">Outra coisa</a></li>
-			</ul>
-		</nav>
-	</header>
+	<div layout:fragment="header">	
+		<ul>
+			<li><a th:href="@{/aluno}">Página Inicial</a></li>
+		</ul>
+	</div>
 	<div layout:fragment="conteudo">
-    
-</div>
+    	<div th:if="${aluno.projeto}==null">
+    		<a th:href="@{/controleProjeto/formulario}"><button>Novo Projeto</button></a>
+    	</div>
+    	<div th:if="${aluno.projeto}!=null">
+    		<table>
+    			<thead>
+    				<tr>
+    					<th>Nome do Projeto</th>
+    					<th>Situação</th>
+    					<th>Professor</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td th:text="${aluno.projeto.nome}">
+    					<td th:if="${aluno.projeto.aceito}==true">Aceito</td>
+    					<td th:if="${aluno.projeto.aceito}==false">Não aceito</td>
+    					<td th:text="${aluno.projeto.professor.nome}">
+    				</tr>
+    				<tr>
+    					<td th:text="${aluno.projeto.descricao}" colspan=3>
+    				</tr>
+    				<tr th:if="${aluno.projeto.aceito}==false">
+    					<td>Comentário:</td>
+    					<td th:text="${aluno.projeto.comentario}"></td>
+    					<td>
+    						<a th:href="@{/controleProjeto/formulario?id={id}(id=${aluno.projeto.id})}"><button>Editar</button></a>
+    						<form action="/controleProjeto" method="post">
+								<input type="hidden" name="_method" value="delete">
+								<input type="hidden" name="id" th:value="${aluno.projeto.id}">
+								<input type="submit" value="Excluir">
+							</form>
+    					</td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+	</div>
 </body>
 </html>

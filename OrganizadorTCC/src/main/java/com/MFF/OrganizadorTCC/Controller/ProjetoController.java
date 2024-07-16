@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,14 +66,20 @@ public class ProjetoController {
 	@Transactional
 	public String cadastra(DadosCadastroProjeto dados) {
 		repository.save(relacionaProjeto((long)0,dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
-		return "redirect:controleProjeto";
+		if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"))){
+			return "redirect:controleProjeto";
+		}
+		return "redirect:";
 	}
 	
 	@PutMapping
 	@Transactional
 	public String atualiza(DadosAtualizaProjeto dados) {
 		repository.save(relacionaProjeto(dados.id(),dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
-		return "redirect:controleProjeto";
+		if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"))){
+			return "redirect:controleProjeto";
+		}
+		return "redirect:";
 	}
 	
 	@DeleteMapping

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{template.html}"
+      layout:decorate="~{basicTemplate.html}"
 >
 <head>
     <title>Erro</title>
 </head>
 <body>
+	<div layout:fragment="header">	
+		<ul>
+			<li><a th:href="@{/}">Página Inicial</a></li>
+		</ul>
+	</div>
 	<div layout:fragment="conteudo">
     	<div>
 	    	<h1 class="erro">Erro</h1>

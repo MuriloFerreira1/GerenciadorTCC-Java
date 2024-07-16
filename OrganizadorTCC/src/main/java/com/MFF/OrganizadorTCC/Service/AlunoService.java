@@ -1,6 +1,7 @@
 package com.MFF.OrganizadorTCC.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -24,5 +25,13 @@ public class AlunoService {
 	
 	public Aluno getById(long RM) {
 		return repository.getReferenceById(RM);
+	}
+	
+	public Aluno getByEmail(String email) {
+		Optional<Aluno> a = repository.findByEmail(email);
+		if (a.isPresent()) {
+			return a.get();
+		}
+		return new Aluno();
 	}
 }
