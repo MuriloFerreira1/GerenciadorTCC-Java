@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{basicTemplate.html}">
+      layout:decorate="~{Template.html}">
 <head>
     <title>Página inicial</title>
 </head>
 <body>
-	<div layout:fragment="header">	
-		<ul>
-			<li><a th:href="@{/aluno}">Página Inicial</a></li>
-		</ul>
-	</div>
+
 	<div layout:fragment="conteudo">
     	<div th:if="${aluno.projeto}==null">
     		<a th:href="@{/controleProjeto/formulario}"><button>Novo Projeto</button></a>

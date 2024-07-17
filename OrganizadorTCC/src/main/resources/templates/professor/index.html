@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{basicTemplate.html}">
+      layout:decorate="~{template.html}">
 <head>
     <title>Página inicial</title>
 </head>
 <body>
-
-	<div layout:fragment="header">
-		<ul>
-            <li><a th:href="@{/professor}">Página inicial</a></li>
-            <li><a th:href="@{/controleProjeto}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Projetos</a></li>
-            <li><a th:href="@{/controleProfessor}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Professores</a></li>
-            <li><a th:href="@{/controleArea}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Areas</a></li>
-            <li><a th:href="@{/controleAluno}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Alunos</a></li>
-			<li><a th:href="@{/professor/abertos}">Pedidos abertos</a></li>
-		</ul>
-	</div>
 	
 	<div layout:fragment="conteudo">
 		
