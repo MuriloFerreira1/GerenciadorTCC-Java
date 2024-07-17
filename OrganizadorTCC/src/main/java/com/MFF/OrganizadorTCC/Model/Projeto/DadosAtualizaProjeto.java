@@ -14,6 +14,8 @@ public record DadosAtualizaProjeto(
 		String descricao,
 		List<Aluno> alunos,
 		Professor professor,
-		Area area) {
+		Area area,
+		String comentario,
+		Boolean aceito) {
 
 }

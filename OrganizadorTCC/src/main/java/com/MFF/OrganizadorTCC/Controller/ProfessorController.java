@@ -103,7 +103,7 @@ public class ProfessorController {
 	
 	@GetMapping("/arquivo")
 	public String carregaPaginaCadastroPorAquivo() {
-		return "/aluno/arquivo";
+		return "/controller/professor/arquivo";
 	}
 	
 	@PostMapping("/arquivo")
@@ -130,12 +130,4 @@ public class ProfessorController {
 		return "redirect:controleProfessor";
 	}
 	
-	@GetMapping("/especial")
-	@Transactional
-	public String custom() {
-		Professor p = repository.getReferenceById((long) 1);
-		p.setSenha(passwordEncoder.encode(p.getSenha()));
-		repository.save(p);
-		return "redirect:controleProfessor";
-	}
 }

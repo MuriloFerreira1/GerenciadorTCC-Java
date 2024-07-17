@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -75,7 +74,10 @@ public class ProjetoController {
 	@PutMapping
 	@Transactional
 	public String atualiza(DadosAtualizaProjeto dados) {
-		repository.save(relacionaProjeto(dados.id(),dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area()));
+		Projeto p = relacionaProjeto(dados.id(),dados.nome(),dados.descricao(),dados.alunos(),dados.professor(),dados.area());
+		p.setComentario(dados.comentario());
+		p.setAceito(dados.aceito());
+		repository.save(p);
 		if(SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMINISTRADOR"))){
 			return "redirect:controleProjeto";
 		}
@@ -98,16 +100,23 @@ public class ProjetoController {
 			projeto.setNome(nome);
 			projeto.setDescricao(descricao);
 		}
-		professor = profRepo.getById(professor.getId());
-		List<Long> ids = new ArrayList<Long>();
-		for(Aluno aluno: alunos) {
-			ids.add(aluno.getId());
+		if(professor!=null) {
+			professor = profRepo.getById(professor.getId());
+			projeto.setProfessor(professor);
 		}
-		alunos = alunoRepo.getAllById(ids);
-		area = areaRepo.getById(area.getId());
-		projeto.setProfessor(professor);
-		projeto.setAlunos(alunos);
-		projeto.setArea(area);
+		if(alunos!=null) {
+			List<Long> ids = new ArrayList<Long>();
+			for(Aluno aluno: alunos) {
+				ids.add(aluno.getId());
+			}
+			alunos = alunoRepo.getAllById(ids);
+			projeto.setAlunos(alunos);
+		}
+		
+		if(area!=null) {
+			area = areaRepo.getById(area.getId());
+			projeto.setArea(area);
+		}
 		return projeto;
 	}
 	

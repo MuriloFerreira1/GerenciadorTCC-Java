@@ -8,7 +8,27 @@
 <body>
 	
 	<div layout:fragment="conteudo">
-		
+		<div th:each="projeto : ${aceitos}">
+			<table>
+    			<thead>
+    				<tr>
+    					<th>Nome do Projeto</th>
+    					<th>Alunos</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td th:text="${projeto.nome}">
+    					<td>
+    						<p th:each="aluno : ${projeto.alunos}" th:text="${aluno.nome}"></p>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td th:text="${projeto.descricao}" colspan=3>
+    				</tr>
+    			</tbody>
+    		</table>
+		</div>
 	</div>
 </body>
 </html>

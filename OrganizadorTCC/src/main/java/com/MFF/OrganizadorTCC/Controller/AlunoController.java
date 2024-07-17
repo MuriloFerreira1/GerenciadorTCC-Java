@@ -83,7 +83,7 @@ public class AlunoController {
 	
 	@GetMapping("/arquivo")
 	public String carregaPaginaCadastroPorAquivo() {
-		return "/aluno/arquivo";
+		return "/controller/aluno/arquivo";
 	}
 	
 	@PostMapping("/arquivo")
