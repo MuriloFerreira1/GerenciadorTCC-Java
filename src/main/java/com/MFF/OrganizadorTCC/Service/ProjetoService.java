@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
-import com.MFF.OrganizadorTCC.Model.Projeto.ProjetoRepository;
+import com.MFF.OrganizadorTCC.Repository.ProjetoRepository;
 
 @Service
 public class ProjetoService {

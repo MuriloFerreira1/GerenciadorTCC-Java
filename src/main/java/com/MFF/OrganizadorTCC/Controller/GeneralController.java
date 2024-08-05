@@ -19,7 +19,7 @@ public class GeneralController implements ErrorController{
 	
 	@RequestMapping("/")
 	public String direcionaPaginaUsuario() {
-		List<GrantedAuthority> authorithies = (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		List<GrantedAuthority> authorithies = List.copyOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		if(authorithies.contains(new SimpleGrantedAuthority("ROLE_ALUNO"))) {
 			return "redirect:aluno";
 		}

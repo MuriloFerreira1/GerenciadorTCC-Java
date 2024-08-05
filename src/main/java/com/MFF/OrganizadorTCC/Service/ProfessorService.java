@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
-import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Repository.ProfessorRepository;
 
 @Service
 public class ProfessorService {

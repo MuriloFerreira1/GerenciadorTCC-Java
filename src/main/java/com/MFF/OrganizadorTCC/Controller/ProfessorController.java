@@ -25,7 +25,7 @@ import com.MFF.OrganizadorTCC.Model.Area.Area;
 import com.MFF.OrganizadorTCC.Model.Professor.DadosAtualizaProfessor;
 import com.MFF.OrganizadorTCC.Model.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
-import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Repository.ProfessorRepository;
 import com.MFF.OrganizadorTCC.Service.AreaService;
 import com.MFF.OrganizadorTCC.Util.Util;
 

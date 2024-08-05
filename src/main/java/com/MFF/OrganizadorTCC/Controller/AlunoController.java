@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
-import com.MFF.OrganizadorTCC.Model.Aluno.AlunoRepository;
 import com.MFF.OrganizadorTCC.Model.Aluno.DadosAtualizaAluno;
 import com.MFF.OrganizadorTCC.Model.Aluno.DadosCadastroAluno;
+import com.MFF.OrganizadorTCC.Repository.AlunoRepository;
 import com.MFF.OrganizadorTCC.Util.Util;
 
 import jakarta.transaction.Transactional;

@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
-import com.MFF.OrganizadorTCC.Model.Aluno.AlunoRepository;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
-import com.MFF.OrganizadorTCC.Model.Professor.ProfessorRepository;
+import com.MFF.OrganizadorTCC.Repository.AlunoRepository;
+import com.MFF.OrganizadorTCC.Repository.ProfessorRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService{

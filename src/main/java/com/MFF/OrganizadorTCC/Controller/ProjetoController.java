@@ -21,7 +21,7 @@ import com.MFF.OrganizadorTCC.Model.Professor.Professor;
 import com.MFF.OrganizadorTCC.Model.Projeto.DadosAtualizaProjeto;
 import com.MFF.OrganizadorTCC.Model.Projeto.DadosCadastroProjeto;
 import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
-import com.MFF.OrganizadorTCC.Model.Projeto.ProjetoRepository;
+import com.MFF.OrganizadorTCC.Repository.ProjetoRepository;
 import com.MFF.OrganizadorTCC.Service.AlunoService;
 import com.MFF.OrganizadorTCC.Service.AreaService;
 import com.MFF.OrganizadorTCC.Service.ProfessorService;

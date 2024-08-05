@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
-import com.MFF.OrganizadorTCC.Model.Aluno.AlunoRepository;
+import com.MFF.OrganizadorTCC.Repository.AlunoRepository;
 
 @Service
 public class AlunoService {

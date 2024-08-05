@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.MFF.OrganizadorTCC.Model.Area.Area;
-import com.MFF.OrganizadorTCC.Model.Area.AreaRepository;
+import com.MFF.OrganizadorTCC.Repository.AreaRepository;
 
 @Service
 public class AreaService {

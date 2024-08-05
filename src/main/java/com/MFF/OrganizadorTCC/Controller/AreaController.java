@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.MFF.OrganizadorTCC.Model.Area.Area;
-import com.MFF.OrganizadorTCC.Model.Area.AreaRepository;
 import com.MFF.OrganizadorTCC.Model.Area.DadosAtualizaArea;
 import com.MFF.OrganizadorTCC.Model.Area.DadosCadastroArea;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
 import com.MFF.OrganizadorTCC.Model.Projeto.Projeto;
+import com.MFF.OrganizadorTCC.Repository.AreaRepository;
 import com.MFF.OrganizadorTCC.Service.ProfessorService;
 import com.MFF.OrganizadorTCC.Service.ProjetoService;
 
