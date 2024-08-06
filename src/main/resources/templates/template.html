@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../static/css/estilo.css" th:href="@{/css/estilo.css}">
@@ -12,11 +13,11 @@
         <nav>
         	<ul>
 	            <li><a th:href="@{/}">Página inicial</a></li>
-	            <li><a th:href="@{/professor/abertos}" sec:authorize="hasRole('ROLE_PROFESSOR')">Pedidos abertos</a></li>
-	            <li><a th:href="@{/controleProjeto}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Projetos</a></li>
-	            <li><a th:href="@{/controleProfessor}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Professores</a></li>
-	            <li><a th:href="@{/controleArea}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Areas</a></li>
-	            <li><a th:href="@{/controleAluno}" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">Alunos</a></li>
+	            <li sec:authorize="hasRole('ROLE_PROFESSOR')"><a th:href="@{/professor/abertos}">Pedidos abertos</a></li>
+	            <li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a th:href="@{/controleProjeto}">Projetos</a></li>
+	            <li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a th:href="@{/controleProfessor}">Professores</a></li>
+	            <li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a th:href="@{/controleArea}">Areas</a></li>
+	            <li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a th:href="@{/controleAluno}">Alunos</a></li>
 			</ul>
             <ul class="direita">
             	<li><a th:href="@{/logout}">Sair</a></li>
