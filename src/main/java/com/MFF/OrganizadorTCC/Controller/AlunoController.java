@@ -22,7 +22,10 @@ import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
 import com.MFF.OrganizadorTCC.Model.Aluno.DadosAtualizaAluno;
 import com.MFF.OrganizadorTCC.Model.Aluno.DadosCadastroAluno;
 import com.MFF.OrganizadorTCC.Repository.AlunoRepository;
-import com.MFF.OrganizadorTCC.Util.Util;
+import com.MFF.OrganizadorTCC.Service.EmailService;
+import com.MFF.OrganizadorTCC.Service.EmailService.Opcao;
+import com.MFF.OrganizadorTCC.Util.GeradorDeSenha;
+import com.MFF.OrganizadorTCC.Util.Cursos;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -34,11 +37,14 @@ public class AlunoController {
 	@Autowired
 	AlunoRepository repository;
 	
-	private final PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
-	public AlunoController(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
+	@Autowired
+	private GeradorDeSenha geradorDeSenha;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model){
@@ -52,16 +58,18 @@ public class AlunoController {
 			var Aluno = repository.getReferenceById(id);
 			model.addAttribute("aluno", Aluno);
 		}
-		model.addAttribute("cursos", Util.getCursos());
+		model.addAttribute("cursos", Cursos.getCursos());
 		return "/controller/aluno/formulario";
 	}
 	
 	@PostMapping
 	@Transactional
 	public String cadastrar(@Valid DadosCadastroAluno dados) {
-		Aluno a = new Aluno(dados);
-		a.setSenha(passwordEncoder.encode(Util.senhaAleatoria()));
-		repository.save(new Aluno(dados));
+		Aluno aluno = new Aluno(dados);
+		String senha = geradorDeSenha.gerarSenha();
+		emailService.enviarEmail(Opcao.ENCAMINHAR_SENHA, aluno.getEmail(), aluno.getNome(), senha);
+		aluno.setSenha(passwordEncoder.encode(senha));
+		repository.save(aluno);
 		return "redirect:controleAluno";
 	}
 	
@@ -101,7 +109,7 @@ public class AlunoController {
 			a.setEmail(dados[2]);
 			a.setNome(dados[3]);
 			a.setCurso(dados[4]);
-			a.setSenha(passwordEncoder.encode(Util.senhaAleatoria()));
+			a.setSenha(passwordEncoder.encode(geradorDeSenha.gerarSenha()));
 			alunos.add(a);
 			linha = reader.readLine();
 		}

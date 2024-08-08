@@ -27,7 +27,8 @@ import com.MFF.OrganizadorTCC.Model.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
 import com.MFF.OrganizadorTCC.Repository.ProfessorRepository;
 import com.MFF.OrganizadorTCC.Service.AreaService;
-import com.MFF.OrganizadorTCC.Util.Util;
+import com.MFF.OrganizadorTCC.Util.GeradorDeSenha;
+import com.MFF.OrganizadorTCC.Util.Cursos;
 
 import jakarta.transaction.Transactional;
 
@@ -41,14 +42,17 @@ public class ProfessorController {
 	@Autowired
 	private AreaService areaServ;
 	
-	private final PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
-	public ProfessorController(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
+	@Autowired
+	private GeradorDeSenha geradorDeSenha;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
+		for(int i=0;i<100;i++) {
+			System.out.println(geradorDeSenha.gerarSenha());
+		}
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
 		return "/controller/professor/listagem";
 	}
@@ -59,7 +63,7 @@ public class ProfessorController {
 			var professor = repository.getReferenceById(id);
 			model.addAttribute(professor);
 		}
-		model.addAttribute("cursos", Util.getCursos());
+		model.addAttribute("cursos", Cursos.getCursos());
 		model.addAttribute("areas", areaServ.getAll());
 		return "/controller/professor/formulario";
 	}
@@ -121,7 +125,7 @@ public class ProfessorController {
 			p.setEmail(dados[2]);
 			p.setNome(dados[3]);
 			p.setCurso(dados[4]);
-			p.setSenha(passwordEncoder.encode(Util.senhaAleatoria()));
+			p.setSenha(passwordEncoder.encode(geradorDeSenha.gerarSenha()));
 			professores.add(p);
 			linha = reader.readLine();
 		}

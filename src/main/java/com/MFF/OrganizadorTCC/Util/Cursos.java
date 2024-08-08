@@ -3,7 +3,7 @@ package com.MFF.OrganizadorTCC.Util;
 import java.nio.charset.Charset;
 import java.util.Random;
 
-public class Util {
+public class Cursos {
 	
 	private static String[] cursos = {"Análise e Desenvolvimento de Sistemas", "Comércio Exterior", "Desenvolvimento de produtos plásticos",
 			"Gestão Empresarial", "Gestão de Recursos Humanos", "Logística", "Polímeros"};
