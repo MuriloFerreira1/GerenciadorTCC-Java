@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template.html}">
+<head>
+    <title>Página inicial</title>
+</head>
+<body>
+	
+	<div layout:fragment="conteudo">
+		<div th:each="projeto : ${pendentes}">
+			<table>
+    			<thead>
+    				<tr>
+    					<th>Nome do Projeto</th>
+    					<th>Alunos</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td th:text="${projeto.nome}">
+    					<td>
+    						<p th:each="aluno : ${projeto.alunos}" th:text="${aluno.nome}"></p>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td th:text="${projeto.descricao}" colspan=3>
+    				</tr>
+    				<tr>
+    					<td>Comentário: </td>
+    					<td colspan="2">
+    						<form action="/controleProjeto" method="post">
+    							<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
+								<input type="hidden" name="id" th:value="${projeto?.id}">
+								<input type="hidden" name="nome" th:value="${projeto?.nome}">
+								<input type="hidden" name="descricao" th:value="${projeto?.descricao}">
+								<input type="hidden" name="aceito" th:value="${projeto?.aceito}">
+								<input type="text" name="comentario" th:value="${projeto?.comentario}">
+    							<input type="submit" value="Responder">
+    						</form>
+    						<form action="/controleProjeto" method="post">
+    							<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
+								<input type="hidden" name="id" th:value="${projeto?.id}">
+								<input type="hidden" name="nome" th:value="${projeto?.nome}">
+								<input type="hidden" name="descricao" th:value="${projeto?.descricao}">
+								<input type="hidden" name="aceito" th:value="true">
+								<input type="hidden" name="comentario" th:value="${projeto?.comentario}">
+    							<input type="submit" value="Aceitar">
+    						</form>
+    					</td>
+    				</tr>
+    			</tbody>
+    		</table>
+		</div>
+	</div>
+</body>
+</html>

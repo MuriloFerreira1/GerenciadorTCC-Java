@@ -16,38 +16,38 @@
 			<input type="hidden" name="id" th:value="${professor?.id}">
 				<div th:if="${professor!= null}">
 					<label for="RM"> RM: </label>
-					<input type="text" id="RM" name="RM" th:value="${professor?.RM}" readonly>
+					<input type="text" id="RM" name="RM" th:value="${professor?.RM}" readonly required>
 				</div>
 				<div th:if="${professor!= null}">
 					<label for="CPF"> CPF: </label>
-		            <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}" readonly>
+		            <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}" readonly required>
 				</div>
 				
 				<div th:if="${professor== null}">
 					<label for="RM"> RM: </label>
-		            <input type="text" id="RM" name="RM" th:value="${professor?.RM}">
+		            <input type="text" id="RM" name="RM" th:value="${professor?.RM}" required>
 				</div>
 				<div th:if="${professor== null}">
 					<label for="CPF"> CPF: </label>
-			        <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}">
+			        <input type="text" id="CPF" name="CPF" th:value="${professor?.CPF}" required>
 				</div>
 			<div>
 				<label for="email"> Email: </label>
-	            <input type="text" id="email" name="email" th:value="${professor?.email}">
+	            <input type="email" id="email" name="email" th:value="${professor?.email}" required>
 			</div>
 			<div>
 	            <label for="nome"> Nome: </label>
-	            <input type="text" id="nome" name="nome" th:value="${professor?.nome}">
+	            <input type="text" id="nome" name="nome" th:value="${professor?.nome}" required>
 	        </div>
 	        <div>
 	            <label for="curso"> Curso: </label>
-	            <select id="curso" name="curso">
+	            <select id="curso" name="curso" required>
 	            	<option th:each="curso: ${cursos}" th:text="${curso}"></option>
 	            </select>
 	        </div>	 
 	        <div>
 	        	<label for="areas">Areas</label>
-	        	<select multiple id="areas" name="areas">
+	        	<select multiple id="areas" name="areas" required>
 					<option></option>
 					<option th:each="area: ${areas}" 
 						th:value="${area.id}" 

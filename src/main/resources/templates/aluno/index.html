@@ -42,8 +42,22 @@
 							</form>
     					</td>
     				</tr>
+    				<tr>
+    					<td>
+    						<form action="/mensagem" method="post">
+    							<input type="hidden" id="aluno" name="aluno" th:value="${mensagem?.aluno}">
+    							<input type="text" id="texto" name="texto" th:value="${mensagem?.texto}">
+    						</form>
+    					</td>
+    				</tr>
     			</tbody>
     		</table>
+    		<div th:each="mensagem: ${projeto.mensagens}">
+    			<h3 th:if="${mensagem.professor}!=null" th:value="${mensagem.professor.nome}"></h3>
+    			<h3 th:if="${mensagem.aluno}!=null" th:value="${mensagem.aluno.nome}"></h3>
+    			<p th:value="${mensagem.texto}">
+    			<p th:value="${mensagem.horario}">
+    		</div>
     	</div>
 	</div>
 </body>

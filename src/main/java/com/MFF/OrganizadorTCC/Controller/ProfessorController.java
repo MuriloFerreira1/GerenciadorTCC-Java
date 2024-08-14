@@ -50,9 +50,6 @@ public class ProfessorController {
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
-		for(int i=0;i<100;i++) {
-			System.out.println(geradorDeSenha.gerarSenha());
-		}
 		model.addAttribute("lista", repository.findAll(Sort.by("nome").ascending()));
 		return "/controller/professor/listagem";
 	}

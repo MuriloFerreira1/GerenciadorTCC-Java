@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
 import com.MFF.OrganizadorTCC.Model.Area.Area;
+import com.MFF.OrganizadorTCC.Model.Mensagem.Mensagem;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
 
 import jakarta.persistence.Column;
@@ -48,6 +49,10 @@ public class Projeto {
 	@OneToOne
 	@JoinColumn(name = "area_id")
 	private Area area;
+	
+	@OneToMany
+	@JoinColumn(name = "projeto_id")
+	private List<Mensagem> mensagens;
 	
 	public Projeto(DadosCadastroProjeto proj) {
 		this.nome = proj.nome();
