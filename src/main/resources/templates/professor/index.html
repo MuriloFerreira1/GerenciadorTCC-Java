@@ -28,6 +28,13 @@
     				<tr>
     					<td th:text="${projeto.descricao}" colspan=3>
     				</tr>
+    				<tr>
+    					<td colspan=3>
+    						<a th:href="@{/professor/detalhes?id={id}(id=${projeto.id})}">
+    							<button>Detalhes</button>
+    						</a>
+    					</td>
+    				</tr>    				
     			</tbody>
     		</table>
 		</div>

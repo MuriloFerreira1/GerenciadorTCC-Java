@@ -8,7 +8,6 @@
 <body>
 	
 	<div layout:fragment="conteudo">
-		<div th:each="projeto : ${pendentes}">
 			<table>
     			<thead>
     				<tr>
@@ -27,31 +26,29 @@
     					<td th:text="${projeto.descricao}" colspan=3>
     				</tr>
     				<tr>
-    					<td>Comentário: </td>
-    					<td colspan="2">
-    						<form action="/controleProjeto" method="post">
-    							<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
-								<input type="hidden" name="id" th:value="${projeto?.id}">
-								<input type="hidden" name="nome" th:value="${projeto?.nome}">
-								<input type="hidden" name="descricao" th:value="${projeto?.descricao}">
-								<input type="hidden" name="aceito" th:value="${projeto?.aceito}">
-								<input type="text" name="comentario" th:value="${projeto?.comentario}">
-    							<input type="submit" value="Responder">
-    						</form>
-    						<form action="/controleProjeto" method="post">
-    							<input type="hidden" name="_method" value="put" th:if="${projeto!= null}">
-								<input type="hidden" name="id" th:value="${projeto?.id}">
-								<input type="hidden" name="nome" th:value="${projeto?.nome}">
-								<input type="hidden" name="descricao" th:value="${projeto?.descricao}">
-								<input type="hidden" name="aceito" th:value="true">
-								<input type="hidden" name="comentario" th:value="${projeto?.comentario}">
-    							<input type="submit" value="Aceitar">
+    					<td colspan="3">
+    						<form action="/mensagem" method="post">
+    							<input type="hidden" id="professor" name="professor" th:value="${professor.id}">
+    							<input type="hidden" id="projeto" name="projeto" th:value="${projeto.id}">
+    							<input type="text" id="texto" name="texto" th:value="${mensagem?.texto}" style="color: black; margin-left: auto">
+    							<input type="submit" value="enviar">
     						</form>
     					</td>
     				</tr>
     			</tbody>
     		</table>
+    		<div th:each="mensagem: ${projeto.mensagens}" class="mensagem">
+    			<div th:if="${mensagem.professor}!=null" class="mensagem-enviada">
+	    			<h3 th:text="${mensagem.professor.nome}" style="color: black;text-align: left; font-weight: bold"></h3>
+	    			<p th:text="${mensagem.texto}" style="color: black">
+	    			<p th:text="${mensagem.horario}" style="color: black">
+    			</div>
+    			<div th:if="${mensagem.aluno}!=null" class="mensagem-recebida">
+	    			<h3 th:text="${mensagem.aluno.nome}" style="color: black; text-align: right; font-weight: bold"></h3>
+	    			<p th:text="${mensagem.texto}" style="color: black">
+	    			<p th:text="${mensagem.horario}" style="color: black">
+    			</div>
+    		</div>
 		</div>
-	</div>
 </body>
 </html>

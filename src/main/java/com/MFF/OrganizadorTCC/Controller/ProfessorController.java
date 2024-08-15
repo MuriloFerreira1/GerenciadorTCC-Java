@@ -27,6 +27,8 @@ import com.MFF.OrganizadorTCC.Model.Professor.DadosCadastroProfessor;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
 import com.MFF.OrganizadorTCC.Repository.ProfessorRepository;
 import com.MFF.OrganizadorTCC.Service.AreaService;
+import com.MFF.OrganizadorTCC.Service.EmailService;
+import com.MFF.OrganizadorTCC.Service.EmailService.Opcao;
 import com.MFF.OrganizadorTCC.Util.GeradorDeSenha;
 import com.MFF.OrganizadorTCC.Util.Cursos;
 
@@ -47,6 +49,9 @@ public class ProfessorController {
 	
 	@Autowired
 	private GeradorDeSenha geradorDeSenha;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@GetMapping
 	public String carregaPaginaListagem(Model model) {
@@ -75,6 +80,9 @@ public class ProfessorController {
                 .collect(Collectors.toList());
 		
 		Professor professor = new Professor(dados);
+		String senha = geradorDeSenha.gerarSenha();
+		emailService.enviarEmail(Opcao.ENCAMINHAR_SENHA, dados.email(), dados.nome(), senha);
+		professor.setSenha(senha);
 		professor.setAreas(areas);
 		repository.save(professor);
 		

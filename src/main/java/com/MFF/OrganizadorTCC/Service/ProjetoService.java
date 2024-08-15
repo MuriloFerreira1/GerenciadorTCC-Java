@@ -20,7 +20,7 @@ public class ProjetoService {
 	}
 	
 	public Projeto getById(long id) {
-		return repository.getReferenceById(null);
+		return repository.getReferenceById(id);
 	}
 
 }

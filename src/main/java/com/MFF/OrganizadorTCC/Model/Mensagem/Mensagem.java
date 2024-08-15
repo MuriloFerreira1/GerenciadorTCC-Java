@@ -1,9 +1,6 @@
 package com.MFF.OrganizadorTCC.Model.Mensagem;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import com.MFF.OrganizadorTCC.Model.Aluno.Aluno;
 import com.MFF.OrganizadorTCC.Model.Professor.Professor;
@@ -49,13 +46,10 @@ public class Mensagem {
 	
 	private String texto;
 	
-	private List<MultipartFile> arquivos;
-	
 	private LocalDateTime horario;
 	
 	public Mensagem(DadosCadastroMensagem dados) {
 		this.texto = dados.texto();
-		this.arquivos = dados.arquivos();
 		this.horario = LocalDateTime.now();
 		this.aluno = dados.aluno();
 		this.professor = dados.professor();
