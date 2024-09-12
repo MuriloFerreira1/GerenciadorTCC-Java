@@ -3,3 +3,6 @@ INSERT INTO `alunos` (`id`, `RM`, `CPF`, `email`, `senha`, `projeto_id`, `nome`,
 	
 INSERT INTO `professores` (`id`, `RM`, `CPF`, `email`, `senha`, `nome`, `curso`, `organizador`) VALUES 
 	(NULL, '1', '0', 'rillofelix@gmail.com', '{bcrypt}$2a$10$tkVn3XuKZUvkZV85s4ry3Oc.4OQAii/65ck1yF81LwiYBxVO4NDy6', 'Cristina', 'Análise e Desenvolvimento de Sistemas', '1')
+
+INSERT INTO `professores` (`id`, `RM`, `CPF`, `email`, `senha`, `nome`, `curso`, `organizador`) VALUES 
+	(NULL, '1', '12345678910', 'rillofelix1@gmail.com', '{bcrypt}$2a$10$tkVn3XuKZUvkZV85s4ry3Oc.4OQAii/65ck1yF81LwiYBxVO4NDy6', 'Fernando', 'ADS', '0')
