@@ -38,8 +38,7 @@ public class Projeto {
 	private boolean aceito;
 	private String comentario;
 	
-	@OneToMany
-	@JoinColumn(name = "projeto_id")
+	@OneToMany(mappedBy = "projeto")
 	private List<Aluno> alunos;
 	
 	@OneToOne
